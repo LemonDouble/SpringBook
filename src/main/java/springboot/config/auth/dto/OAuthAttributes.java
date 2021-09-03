@@ -27,6 +27,10 @@ public class OAuthAttributes {
 
     public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes){
         if("naver".equals(registrationId)){
+            // userNameAttributeName : response
+            // oauth.properties 에서
+            // spring.security.oauth2.client.provider.naver.user_name_attribute=response
+            // 설정했으므로.. 그래서 수동으로 id 바꿔준다.
             return ofNaver("id", attributes);
         }
 
