@@ -9,6 +9,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import springboot.posts.Posts;
 import springboot.posts.PostsRepository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -47,5 +49,30 @@ public class PostsRepositoryTest {
         assertEquals(posts.getTitle(),title);
         assertEquals(posts.getContent(),content);
         assertEquals(posts.getAuthor(),author);
+    }
+
+    @Test
+    public void BaseTimeEntity_등록() throws Exception {
+        //given
+        String title = "title";
+        String content = "content";
+        String author = "author";
+        LocalDateTime now = LocalDateTime.of(2019,6,4,0,0,0);
+        postsRepository.save(Posts.builder()
+                .title(title)
+                .content(content)
+                .author(author)
+                .build());
+
+        //when
+        List<Posts> postsList = postsRepository.findAll();
+
+        //then
+        Posts posts = postsList.get(0);
+
+        System.out.println(">>>>>>>>> createDate="+posts.getCreatedDate()+", modifiedDate="+posts.getModifiedDate());
+
+        assertTrue(posts.getCreatedDate().isAfter(now));
+        assertTrue(posts.getModifiedDate().isAfter(now));
     }
 }
