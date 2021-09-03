@@ -2,9 +2,6 @@ buildscript{
     repositories {
         mavenCentral()
     }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    }
 }
 
 
@@ -28,6 +25,7 @@ dependencies {
     implementation 'com.h2database:h2:1.4.200'
     implementation 'org.springframework.boot:spring-boot-starter-mustache:2.5.4'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client:2.5.4'
+    implementation 'org.springframework.session:spring-session-jdbc:2.5.2'
 
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
 

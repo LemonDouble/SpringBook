@@ -1,4 +1,4 @@
-package springboot.web.dto;
+package springboot.config.auth.dto;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -43,7 +43,7 @@ public class OAuthAttributes {
                 .name(name)
                 .email(email)
                 .picture(picture)
-                .role(Role.GUEST)
+                .role(Role.USER)
                 .build();
     }
 }

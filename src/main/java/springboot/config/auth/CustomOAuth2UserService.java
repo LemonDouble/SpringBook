@@ -11,8 +11,8 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import springboot.domain.user.User;
 import springboot.domain.user.UserRepository;
-import springboot.web.dto.OAuthAttributes;
-import springboot.web.dto.SessionUser;
+import springboot.config.auth.dto.OAuthAttributes;
+import springboot.config.auth.dto.SessionUser;
 
 import javax.servlet.http.HttpSession;
 import java.util.Collections;

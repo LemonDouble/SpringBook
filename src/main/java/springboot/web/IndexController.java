@@ -5,9 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import springboot.config.auth.LoginUser;
 import springboot.posts.PostsService;
 import springboot.web.dto.PostsResponseDto;
-import springboot.web.dto.SessionUser;
+import springboot.config.auth.dto.SessionUser;
 
 import javax.servlet.http.HttpSession;
 
@@ -19,9 +20,11 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model, @LoginUser SessionUser user){
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+
+        // Annotation 기반으로 리팩토링 해서 아래와 같은 중복된 코드를 없앨 수 있다!
+        // SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
         if(user != null){
             model.addAttribute("userName", user.getName());
